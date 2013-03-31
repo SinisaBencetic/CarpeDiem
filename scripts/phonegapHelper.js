@@ -7,11 +7,11 @@
     //if (transaction == undefined) throw ('empty transaction!');
     //if (id == undefined) throw ('task id empty!');
 
-    //tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(1,"dummy")');
+    tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(1,"dummy")');
 }
 
 function errorCB(err) {
-    alert("Error processing SQL: " + err.code);
+    alert("Error processing SQL: " + err.code + err.message);
 }
 
 function successCB() {
@@ -35,7 +35,7 @@ function GetTaskLastExecutionDate() {
             return undefined;
         }
         db.transaction(createDBifMissing, errorCB, successCB);
-        db.transaction(updateTaskDate, errorCB, successCB);
+        //db.transaction(updateTaskDate, errorCB, successCB);
     } catch (e) {
         alert("Error during GetTaskLastExecutionDate() ..." + e.message);
     }            
