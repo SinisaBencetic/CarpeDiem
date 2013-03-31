@@ -19,7 +19,7 @@ function successCB() {
 }
 
 function updateTaskDate(tx) {
-    var id = 1;
+    var id = "1";
     var date = new Date().getTime().toString();
     //if (transaction == undefined) throw ('empty transaction!');
     //if (id == undefined) throw ('task id empty!');
