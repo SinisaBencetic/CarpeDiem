@@ -1,6 +1,7 @@
 ﻿var taskId = "";
 var taskDate = "";
 function CreateDBifMissing(tx) {
+    alert('CreateDBifMissing');
     //tx.executeSql('DROP TABLE IF EXISTS task');
     tx.executeSql('CREATE TABLE IF NOT EXISTS task (id unique, lastExecutionDate)');
     //var id = 1;
@@ -31,13 +32,22 @@ function UpdateTaskDateSQL(tx) {
 }
 
 
-function ExecuteTaskTransaction(transactionSQL) {
+function ExecuteTaskTransaction(transactionSQLCallback) {
     try {
+        alert('ExecuteTaskTransaction start');
         var db = window.openDatabase("carpediem", "1.0", "Carpe diem", 1000);
         if (db == undefined) throw("No DB object created...");                    
-        db.transaction(transactionSQL, errorCB, successCB);        
+        db.transaction(transactionSQLCallback, errorCB, successCB);        
     } catch (e) {
         alert("Error during ExecuteSQL() ..." + e.message);
     }            
+}
+
+function UpdateTaskDate(id, date) {
+    alert('UpdateTaskDate');
+    ExecuteTaskTransaction(CreateDBifMissing);
+    taskId = id.toString();
+    taskDate = date.toString();
+    ExecuteTaskTransaction(UpdateTaskDateSQL);
 }
 

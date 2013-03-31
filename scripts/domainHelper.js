@@ -1,9 +1,9 @@
-﻿function UpdateTaskDate(id, date) {
-    ExecuteTaskTransaction(CreateDBifMissing);
-    taskId = id.toString();
-    taskDate = date.toString();
-    ExecuteTaskTransaction(UpdateTaskDateSQL);
-}
+﻿//function UpdateTaskDate(id, date) {
+//    ExecuteTaskTransaction(CreateDBifMissing);
+//    taskId = id.toString();
+//    taskDate = date.toString();
+//    ExecuteTaskTransaction(UpdateTaskDateSQL);
+//}
 
 function GetTaskDateMilisec(taskDOMid) {
     var taskDate = $('#' + taskDOMid).val();
