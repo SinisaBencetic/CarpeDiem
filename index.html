@@ -13,12 +13,12 @@
 </head>
 <body>    
     <div data-role="page" id="main">
-        <script>
+        <script>            
             $("#main").bind("pagebeforecreate", function (event) {
 
                 function OnDeviceReady() {
                     //alert("device");                    
-                    $('#' + id).val(new Date().getTime());
+                    $('#gitara').val(new Date().getTime());                
                     UpdateTaskDate("gitara");
                     GetTaskDate("gitara");
                     //GetTaskDate();
