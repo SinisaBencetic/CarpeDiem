@@ -1,6 +1,13 @@
 ﻿function createDBifMissing(tx) {
     tx.executeSql('DROP TABLE IF EXISTS task');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS task (id unique, lastExecutionDate)');    
+    tx.executeSql('CREATE TABLE IF NOT EXISTS task (id unique, lastExecutionDate)');
+    var id = 1;
+    //var date = new Date().getTime();
+    var date = 'dummy';
+    if (transaction == undefined) throw ('empty transaction!');
+    if (id == undefined) throw ('task id empty!');
+
+    tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(1,"dummy")');
 }
 
 function errorCB(err) {
@@ -28,7 +35,7 @@ function GetTaskLastExecutionDate() {
             return undefined;
         }
         db.transaction(createDBifMissing, errorCB, successCB);
-        db.transaction(updateTaskDate, errorCB, successCB);
+        //db.transaction(updateTaskDate, errorCB, successCB);
     } catch (e) {
         alert("Error during GetTaskLastExecutionDate() ..." + e.message);
     }            
