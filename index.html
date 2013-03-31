@@ -7,6 +7,7 @@
 	<link type="text/css" rel="stylesheet" href="styles/jquery.mobile-1.3.0.min.css" />
     <script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="scripts/phonegapHelper.js"></script>
+    <script type="text/javascript" src="scripts/domainHelper.js"></script>
     <script type="text/javascript" src="scripts/cordova-2.5.0.js"></script>    
     <script type="text/javascript" src="scripts/jquery.mobile-1.3.0.min.js" ></script>    
     
@@ -17,8 +18,9 @@
             $("#main").bind("pagebeforecreate", function (event) {
 
                 function OnDeviceReady() {
-                    alert("device");
+                    //alert("device");
                     GetTaskLastExecutionDate();
+                    //GetTaskDate();
                 }
                 document.addEventListener("deviceready", OnDeviceReady, false);
 
@@ -28,6 +30,8 @@
             Carpe Diem
         </div>
         <div data-role="content" >
+            <input type="hidden" value="1" id="gitara" />
+            <input type="button" value="Gitara" id="gitara" />
         </div>
         <div data-role="footer" >
             Sinisa Bencetic (c) 2013.
