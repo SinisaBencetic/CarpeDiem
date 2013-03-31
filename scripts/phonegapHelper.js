@@ -19,12 +19,12 @@ function successCB() {
 }
 
 function updateTaskDate(tx) {
-    var id = "1";
-    var date = new Date().getTime().toString();
+    var id = 1;
+    var date = new Date().getTime();
     //if (transaction == undefined) throw ('empty transaction!');
     //if (id == undefined) throw ('task id empty!');
     
-    tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(id,date)');
+    tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES('+id.toString()+',"'+date.toString()+'")');
     //tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(1,"dummy")');
 }
 
