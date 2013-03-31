@@ -24,8 +24,8 @@ function updateTaskDate(tx) {
     //if (transaction == undefined) throw ('empty transaction!');
     //if (id == undefined) throw ('task id empty!');
     
-    //tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(id,date)');
-    tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(1,"dummy")');
+    tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(id,date)');
+    //tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(1,"dummy")');
 }
 
 function GetTaskLastExecutionDate() {
