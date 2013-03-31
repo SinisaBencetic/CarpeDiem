@@ -4,13 +4,6 @@ function CreateDBifMissing(tx) {
     alert('CreateDBifMissing');
     //tx.executeSql('DROP TABLE IF EXISTS task');
     tx.executeSql('CREATE TABLE IF NOT EXISTS task (id unique, lastExecutionDate)');
-    //var id = 1;
-    //var date = new Date().getTime();
-    //var date = 'dummy';
-    //if (transaction == undefined) throw ('empty transaction!');
-    //if (id == undefined) throw ('task id empty!');
-
-    //tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(1,"dummy")');
 }
 
 function errorCB(err) {
@@ -27,9 +20,25 @@ function UpdateTaskDateSQL(tx) {
         tx.executeSql('DELETE FROM task WHERE id="'+taskId.toString()+'"');
         tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES("' + taskId.toString() + '","' + taskDate.toString() + '")');
     } catch (e) {
-        alert('updateTaskDateSQL->' + e.message);
+        throw('updateTaskDateSQL->' + e.message);
     }
 }
+
+function GetTaskDateSQL(tx) {
+    try {
+        tx.executeSql('SELECT lastExecutionDate FROM task WHERE id="' + taskId + '"', [], GetTaskDateResult, errorCB);
+    } catch (e) {
+        throw ('GetTaskDateSQL->' + e.message);
+    }
+}
+
+function GetTaskDateResult(tx, results) {
+    var len = results.rows.length;
+    alert("DEMO table: " + len + " rows found.");    
+    taskDate= results.rows.item(0).lastExecutionDate;
+    alert(taskDate);    
+}
+    
 
 
 function ExecuteTaskTransaction(transactionSQLCallback) {
@@ -43,11 +52,20 @@ function ExecuteTaskTransaction(transactionSQLCallback) {
     }            
 }
 
-function UpdateTaskDate(id, date) {
-    alert('UpdateTaskDate');
+function GetTaskDate(id) {
+    alert('GetTaskDate');
     ExecuteTaskTransaction(CreateDBifMissing);
     taskId = id.toString();
-    taskDate = date.toString();
+    ExecuteTaskTransaction(GetTaskDateSQL);
+    $('#' + id).val(taskDate);
+}
+
+function UpdateTaskDate(id) {
+    alert('UpdateTaskDate');
+    
+    ExecuteTaskTransaction(CreateDBifMissing);
+    taskId = id.toString();
+    taskDate = $('#' + id).val().toString();
     ExecuteTaskTransaction(UpdateTaskDateSQL);
 }
 
