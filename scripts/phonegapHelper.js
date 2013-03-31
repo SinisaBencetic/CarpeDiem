@@ -7,7 +7,7 @@
     //if (transaction == undefined) throw ('empty transaction!');
     //if (id == undefined) throw ('task id empty!');
 
-    tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(1,"dummy")');
+    //tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(1,"dummy")');
 }
 
 function errorCB(err) {
@@ -19,12 +19,13 @@ function successCB() {
 }
 
 function updateTaskDate(tx) {
-    var id = 1;
-    var date = new Date().getTime();
+    //var id = 1;
+    //var date = new Date().getTime();
     //if (transaction == undefined) throw ('empty transaction!');
-    if (id == undefined) throw ('task id empty!');
+    //if (id == undefined) throw ('task id empty!');
     
-    tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(id,date)');
+    //tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(id,date)');
+    tx.executeSql('INSERT INTO task (id, lastExecutionDate) VALUES(1,"dummy")');
 }
 
 function GetTaskLastExecutionDate() {
@@ -35,7 +36,7 @@ function GetTaskLastExecutionDate() {
             return undefined;
         }
         db.transaction(createDBifMissing, errorCB, successCB);
-        //db.transaction(updateTaskDate, errorCB, successCB);
+        db.transaction(updateTaskDate, errorCB, successCB);
     } catch (e) {
         alert("Error during GetTaskLastExecutionDate() ..." + e.message);
     }            
