@@ -19,7 +19,8 @@
 
                 function OnDeviceReady() {
                     //alert("device");
-                    GetTaskLastExecutionDate();
+                    var date = new GetDate().getTime();
+                    UpdateTaskDate(1, date);
                     //GetTaskDate();
                 }
                 document.addEventListener("deviceready", OnDeviceReady, false);
